@@ -16,19 +16,36 @@ const authMiddleware = (req, res, next) => {
 // Apply authentication middleware to all routes
 router.use(authMiddleware);
 
+// ===== CORE DASHBOARD STATS =====
+
 // GET /api/dashboard/stats - Get dashboard statistics
+// Returns: benchStrength, activeRequirements, weeklySubmissions, interviewsScheduled
 router.get('/stats', dashboardController.getDashboardStats);
 
-// GET /api/dashboard/analytics - Get analytics data
-router.get('/analytics', dashboardController.getAnalyticsData);
-
 // GET /api/dashboard/utilization - Get candidate utilization data
+// Returns: utilized percentage, bench percentage
 router.get('/utilization', dashboardController.getUtilizationData);
 
-// GET /api/dashboard/performance - Get team performance data
-router.get('/performance', dashboardController.getPerformanceData);
+// ===== ANALYTICS DATA =====
 
-// GET /api/dashboard/revenue - Get revenue forecast data
-router.get('/revenue', dashboardController.getRevenueData);
+// GET /api/dashboard/analytics - Get analytics data
+// Returns: benchStrengthData, successRatioData for charts
+router.get('/analytics', dashboardController.getAnalyticsData);
+
+// ===== PERFORMANCE DATA - NEW DYNAMIC ENDPOINTS =====
+
+// GET /api/dashboard/top-performers - Get top performing candidates (REAL DATA)
+// Returns: Top 5 candidates with placements, experience, skills, trends
+router.get('/top-performers', dashboardController.getTopPerformers);
+
+// GET /api/dashboard/performance-metrics - Get detailed performance metrics (DYNAMIC)
+// Returns: conversionRate, avgTimeToHire, submissionAccuracy, clientSatisfaction
+router.get('/performance-metrics', dashboardController.getPerformanceMetrics);
+
+// ===== REVENUE & FORECAST DATA =====
+
+// GET /api/dashboard/revenue-forecast - Get revenue forecast data (DYNAMIC)
+// Returns: lastMonth, thisMonth, nextMonth, trend, placements
+router.get('/revenue-forecast', dashboardController.getRevenueForecast);
 
 module.exports = router;
