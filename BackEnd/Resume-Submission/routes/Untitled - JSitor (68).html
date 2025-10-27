@@ -1,0 +1,1340 @@
+<!doctype html><html><head><style type="text/css">  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .page-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .users-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar-small {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .role-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .role-admin { background: #ff6b6b; color: white; }
+        .role-manager { background: #feca57; color: white; }
+        .role-accountant { background: #48dbfb; color: white; }
+        .role-recruiter { background: #ff9ff3; color: white; }
+        .role-user { background: #54a0ff; color: white; }
+
+        .status-active {
+            color: #00b894;
+            font-weight: 600;
+        }
+
+        .status-inactive {
+            color: #636e72;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            background-color: white;
+        }
+
+        .email-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .email-templates, .send-email {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .template-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .template-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-desc {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation tabs */
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 0.8rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .report-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .report-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .report-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-desc {
+            opacity: 0.9;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .settings-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .settings-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #667eea;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        @media (max-width: 768px) {
+            .email-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }</style></head><body><div class="header">
+	<div class="logo">
+		<h1>PROPHECY</h1>
+	</div>
+	<h1 class="page-title">Admin Dashboard</h1>
+	<!-- <div class="user-profile"> -->
+		<!-- <div class="user-avatar">PG</div> -->
+		<!-- <div> -->
+			<!-- <div style="color: white; font-weight: 600;">Poongothai</div> -->
+			<!-- <div style="color: rgba(255,255,255,0.7); font-size: 0.8rem;">Administrator</div> -->
+		<!-- </div> -->
+	</div>
+</div>
+
+<!-- Navigation Tabs -->
+
+
+
+
+<!-- Users Management Section -->
+<div id="users" class="content-section">
+	<div class="section-header">
+		<h2 class="section-title">Users Management</h2>
+		<div style="display: flex; gap: 1rem; align-items: center;">
+			<div class="search-bar">
+				<input type="text" class="search-input" placeholder="Search users..." id="userSearch">
+				<svg class="search-icon" width="16" height="16" viewBox="0 0 24 24">
+					<path
+						d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+				</svg>
+			</div>
+			<select class="form-select" id="roleFilter" style="max-width: 150px;" onchange="filterUsers()">
+                    <option value="">All Roles</option>
+                    <option value="admin">Admin</option>
+                    <option value="manager">Manager</option>
+                    <option value="recruiter">Recruiter</option>
+                    <option value="accountant">Accountant</option>
+                    <option value="user">User</option>
+                </select>
+			<button class="btn btn-primary" onclick="openAddUserModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    Add User
+                </button>
+		</div>
+	</div>
+
+	<table class="users-table">
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Email</th>
+				<th>Role</th>
+				<th>Status</th>
+				<th>Last Login</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody id="usersTableBody">
+			<tr data-role="manager">
+				<td>
+					<div class="user-info">
+						<div class="user-avatar-small">JD</div>
+						<div>
+							<div style="font-weight: 600;">John Doe</div>
+							<div style="color: #6c757d; font-size: 0.8rem;">+1 234 567 8900</div>
+						</div>
+					</div>
+				</td>
+				<td>john.doe@prophecy.com</td>
+				<td><span class="role-badge role-manager">Manager</span></td>
+				<td><span class="status-active">Active</span></td>
+				<td>2 hours ago</td>
+				<td>
+					<div class="action-buttons">
+						<button class="btn btn-secondary btn-sm" onclick="editUser(1)">Edit</button>
+						<button class="btn btn-success btn-sm" onclick="changeRole(1, 'John Doe', 'Manager')">Change Role</button>
+						<button class="btn btn-danger btn-sm" onclick="deleteUser(1, 'John Doe')">Delete</button>
+					</div>
+				</td>
+			</tr>
+			<tr data-role="recruiter">
+				<td>
+					<div class="user-info">
+						<div class="user-avatar-small">SM</div>
+						<div>
+							<div style="font-weight: 600;">Sarah Miller</div>
+							<div style="color: #6c757d; font-size: 0.8rem;">+1 234 567 8901</div>
+						</div>
+					</div>
+				</td>
+				<td>sarah.miller@prophecy.com</td>
+				<td><span class="role-badge role-recruiter">Recruiter</span></td>
+				<td><span class="status-active">Active</span></td>
+				<td>1 day ago</td>
+				<td>
+					<div class="action-buttons">
+						<button class="btn btn-secondary btn-sm" onclick="editUser(2)">Edit</button>
+						<button class="btn btn-success btn-sm" onclick="changeRole(2, 'Sarah Miller', 'Recruiter')">Change Role</button>
+						<button class="btn btn-danger btn-sm" onclick="deleteUser(2, 'Sarah Miller')">Delete</button>
+					</div>
+				</td>
+			</tr>
+			<tr data-role="accountant">
+				<td>
+					<div class="user-info">
+						<div class="user-avatar-small">RJ</div>
+						<div>
+							<div style="font-weight: 600;">Robert Johnson</div>
+							<div style="color: #6c757d; font-size: 0.8rem;">+1 234 567 8902</div>
+						</div>
+					</div>
+				</td>
+				<td>robert.johnson@prophecy.com</td>
+				<td><span class="role-badge role-accountant">Accountant</span></td>
+				<td><span class="status-inactive">Inactive</span></td>
+				<td>5 days ago</td>
+				<td>
+					<div class="action-buttons">
+						<button class="btn btn-secondary btn-sm" onclick="editUser(3)">Edit</button>
+						<button class="btn btn-success btn-sm" onclick="changeRole(3, 'Robert Johnson', 'Accountant')">Change Role</button>
+						<button class="btn btn-danger btn-sm" onclick="deleteUser(3, 'Robert Johnson')">Delete</button>
+					</div>
+				</td>
+			</tr>
+			<tr data-role="admin">
+				<td>
+					<div class="user-info">
+						<div class="user-avatar-small">EM</div>
+						<div>
+							<div style="font-weight: 600;">Emma Wilson</div>
+							<div style="color: #6c757d; font-size: 0.8rem;">+1 234 567 8903</div>
+						</div>
+					</div>
+				</td>
+				<td>emma.wilson@prophecy.com</td>
+				<td><span class="role-badge role-admin">Admin</span></td>
+				<td><span class="status-active">Active</span></td>
+				<td>30 minutes ago</td>
+				<td>
+					<div class="action-buttons">
+						<button class="btn btn-secondary btn-sm" onclick="editUser(4)">Edit</button>
+						<button class="btn btn-success btn-sm" onclick="changeRole(4, 'Emma Wilson', 'Admin')">Change Role</button>
+						<button class="btn btn-danger btn-sm" onclick="deleteUser(4, 'Emma Wilson')">Delete</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- Email Management Section -->
+<div id="email" class="content-section" style="display: none;">
+	<h2 class="section-title" style="margin-bottom: 2rem;">Email Management</h2>
+
+	<div class="email-section">
+		<div class="email-templates">
+			<h3 style="margin-bottom: 1.5rem; color: #2c3e50;">Email Templates</h3>
+
+			<div class="template-item">
+				<div class="template-title">Welcome Email</div>
+				<div class="template-desc">Send to new users upon registration</div>
+				<button class="btn btn-primary btn-sm" style="margin-top: 0.5rem;" onclick="useTemplate('welcome')">Use Template</button>
+			</div>
+
+			<div class="template-item">
+				<div class="template-title">Role Change Notification</div>
+				<div class="template-desc">Notify users when their role is updated</div>
+				<button class="btn btn-primary btn-sm" style="margin-top: 0.5rem;" onclick="useTemplate('role-change')">Use Template</button>
+			</div>
+
+			<div class="template-item">
+				<div class="template-title">Account Deactivation</div>
+				<div class="template-desc">Send when deactivating user accounts</div>
+				<button class="btn btn-primary btn-sm" style="margin-top: 0.5rem;" onclick="useTemplate('deactivation')">Use Template</button>
+			</div>
+
+			<div class="template-item">
+				<div class="template-title">Password Reset</div>
+				<div class="template-desc">Password reset instructions</div>
+				<button class="btn btn-primary btn-sm" style="margin-top: 0.5rem;" onclick="useTemplate('password-reset')">Use Template</button>
+			</div>
+
+			<div class="template-item">
+				<div class="template-title">System Maintenance</div>
+				<div class="template-desc">Notify users about scheduled maintenance</div>
+				<button class="btn btn-primary btn-sm" style="margin-top: 0.5rem;" onclick="useTemplate('maintenance')">Use Template</button>
+			</div>
+		</div>
+
+		<div class="send-email">
+			<h3 style="margin-bottom: 1.5rem; color: #2c3e50;">Send Email</h3>
+
+			<form id="emailForm">
+				<div class="form-group">
+					<label class="form-label">Recipients</label>
+					<select class="form-select" id="emailRecipients">
+                            <option value="all">All Users</option>
+                            <option value="managers">All Managers</option>
+                            <option value="recruiters">All Recruiters</option>
+                            <option value="accountants">All Accountants</option>
+                            <option value="admins">All Admins</option>
+                            <option value="active">Active Users Only</option>
+                            <option value="inactive">Inactive Users Only</option>
+                            <option value="custom">Select Specific Users</option>
+                        </select>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Subject</label>
+					<input type="text" class="form-control" id="emailSubject" placeholder="Enter email subject" required>
+                    </div>
+
+					<div class="form-group">
+						<label class="form-label">Message</label>
+						<textarea class="form-control" id="emailMessage" rows="8" placeholder="Enter your message here..." required></textarea>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Priority</label>
+						<select class="form-select" id="emailPriority">
+                            <option value="low">Low</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+					</div>
+
+					<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+						<button type="button" class="btn btn-primary" onclick="sendEmail()">Send Email</button>
+						<button type="button" class="btn btn-secondary" onclick="previewEmail()">Preview</button>
+						<button type="button" class="btn btn-secondary" onclick="saveAsDraft()">Save as Draft</button>
+						<button type="button" class="btn btn-secondary" onclick="clearEmailForm()">Clear</button>
+					</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Reports & Analytics Section -->
+<div id="reports" class="content-section" style="display: none;">
+	<h2 class="section-title" style="margin-bottom: 2rem;">Reports & Analytics</h2>
+
+	<div class="reports-grid">
+		<div class="report-card" onclick="generateReport('user-activity')">
+			<div class="report-icon">📊</div>
+			<div class="report-title">User Activity Report</div>
+			<div class="report-desc">View user login patterns and activity metrics</div>
+		</div>
+
+		<div class="report-card" onclick="generateReport('role-distribution')">
+			<div class="report-icon">👥</div>
+			<div class="report-title">Role Distribution</div>
+			<div class="report-desc">Analyze user roles and permissions distribution</div>
+		</div>
+
+		<div class="report-card" onclick="generateReport('email-analytics')">
+			<div class="report-icon">📧</div>
+			<div class="report-title">Email Analytics</div>
+			<div class="report-desc">Track email delivery rates and engagement</div>
+		</div>
+
+		<div class="report-card" onclick="generateReport('system-usage')">
+			<div class="report-icon">⚡</div>
+			<div class="report-title">System Usage</div>
+			<div class="report-desc">Monitor system performance and usage statistics</div>
+		</div>
+
+		<div class="report-card" onclick="generateReport('security-audit')">
+			<div class="report-icon">🔒</div>
+			<div class="report-title">Security Audit</div>
+			<div class="report-desc">Review security events and access logs</div>
+		</div>
+
+		<div class="report-card" onclick="generateReport('custom-report')">
+			<div class="report-icon">📋</div>
+			<div class="report-title">Custom Reports</div>
+			<div class="report-desc">Create and generate custom analytical reports</div>
+		</div>
+	</div>
+</div>
+
+<!-- Settings Section -->
+<div id="settings" class="content-section" style="display: none;">
+	<h2 class="section-title" style="margin-bottom: 2rem;">System Settings</h2>
+
+	<div class="settings-grid">
+		<div class="settings-card">
+			<div class="settings-title">User Management</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Auto-approve new users</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Automatically approve user registrations</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Email verification required</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Require email verification for new accounts</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Two-factor authentication</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Enforce 2FA for admin users</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+			</div>
+		</div>
+
+		<div class="settings-card">
+			<div class="settings-title">Email Settings</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Email notifications</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Send system notifications via email</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Welcome emails</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Send welcome email to new users</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Batch email limits</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Limit batch emails to 100 per hour</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+		</div>
+
+		<div class="settings-card">
+			<div class="settings-title">Security Settings</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Session timeout</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Auto logout after 30 minutes of inactivity</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Password complexity</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Enforce strong password requirements</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Login attempt limits</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Lock accounts after 5 failed attempts</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+		</div>
+
+		<div class="settings-card">
+			<div class="settings-title">System Maintenance</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Automatic backups</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Daily database backups at 2 AM</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">Maintenance mode</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Enable maintenance mode for updates</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+			</div>
+
+			<div class="setting-item">
+				<div>
+					<div style="font-weight: 600;">System monitoring</div>
+					<div style="font-size: 0.8rem; color: #6c757d;">Monitor system performance and alerts</div>
+				</div>
+				<label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+			</div>
+		</div>
+	</div>
+
+	<div style="margin-top: 2rem; text-align: center;">
+		<button class="btn btn-primary" onclick="saveSettings()">Save All Settings</button>
+		<button class="btn btn-secondary" onclick="resetSettings()">Reset to Defaults</button>
+	</div>
+</div>
+
+<!-- Add User Modal -->
+<div id="addUserModal" class="modal">
+	<div class="modal-content">
+		<span class="close" onclick="closeAddUserModal()">&times;</span>
+		<h2 style="margin-bottom: 1.5rem; color: #2c3e50;">Add New User</h2>
+
+		<form id="addUserForm">
+			<div class="form-group">
+				<label class="form-label">Full Name</label>
+				<input type="text" class="form-control" id="newUserName" placeholder="Enter full name" required>
+                </div>
+
+				<div class="form-group">
+					<label class="form-label">Email Address</label>
+					<input type="email" class="form-control" id="newUserEmail" placeholder="Enter email address" required>
+                </div>
+
+					<div class="form-group">
+						<label class="form-label">Phone Number</label>
+						<input type="tel" class="form-control" id="newUserPhone" placeholder="Enter phone number">
+                </div>
+
+						<div class="form-group">
+							<label class="form-label">Role</label>
+							<select class="form-select" id="newUserRole" required>
+                        <option value="">Select Role</option>
+                        <option value="user">User</option>
+                        <option value="recruiter">Recruiter</option>
+                        <option value="manager">Manager</option>
+                        <option value="accountant">Accountant</option>
+                        <option value="admin">Admin</option>
+                    </select>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">Department</label>
+							<select class="form-select" id="newUserDepartment">
+                        <option value="">Select Department</option>
+                        <option value="hr">Human Resources</option>
+                        <option value="finance">Finance</option>
+                        <option value="it">Information Technology</option>
+                        <option value="operations">Operations</option>
+                        <option value="sales">Sales</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+						</div>
+
+						<div style="display: flex; gap: 1rem; margin-top: 2rem;">
+							<button type="submit" class="btn btn-primary">Add User</button>
+							<button type="button" class="btn btn-secondary" onclick="closeAddUserModal()">Cancel</button>
+						</div>
+		</form>
+	</div>
+</div>
+
+<!-- Change Role Modal -->
+<div id="changeRoleModal" class="modal">
+	<div class="modal-content">
+		<span class="close" onclick="closeChangeRoleModal()">&times;</span>
+		<h2 style="margin-bottom: 1.5rem; color: #2c3e50;">Change User Role</h2>
+
+		<p style="margin-bottom: 1.5rem; color: #6c757d;">
+			Changing the role for: <strong id="changeRoleUserName"></strong>
+		</p>
+
+		<div class="form-group">
+			<label class="form-label">Current Role</label>
+			<input type="text" class="form-control" id="currentRole" readonly>
+            </div>
+
+			<div class="form-group">
+				<label class="form-label">New Role</label>
+				<select class="form-select" id="newRole" required>
+                    <option value="">Select New Role</option>
+                    <option value="user">User</option>
+                    <option value="recruiter">Recruiter</option>
+                    <option value="manager">Manager</option>
+                    <option value="accountant">Accountant</option>
+                    <option value="admin">Admin</option>
+                </select>
+			</div>
+
+			<div class="form-group">
+				<label class="form-label">Reason for Change</label>
+				<textarea class="form-control" id="roleChangeReason" rows="3" placeholder="Enter reason for role change..."></textarea>
+			</div>
+
+			<div style="display: flex; gap: 1rem; margin-top: 2rem;">
+				<button type="button" class="btn btn-success" onclick="confirmRoleChange()">Change Role</button>
+				<button type="button" class="btn btn-secondary" onclick="closeChangeRoleModal()">Cancel</button>
+			</div>
+		</div>
+	</div><script type="text/javascript">// Global variables
+let currentSection = 'users';
+let editingUserId = null;
+let changeRoleUserId = null;
+
+// Email templates
+const emailTemplates = {
+  welcome: {
+    subject: "Welcome to PROPHECY!",
+    message: "Dear {{name}},\n\nWelcome to PROPHECY! Your account has been successfully created.\n\nYour login credentials:\nEmail: {{email}}\nTemporary Password: {{temp_password}}\n\nPlease log in and change your password immediately.\n\nBest regards,\nPROPHECY Team"
+  },
+  'role-change': {
+    subject: "Your Role Has Been Updated",
+    message: "Dear {{name}},\n\nYour role in PROPHECY has been updated to: {{new_role}}\n\nThis change is effective immediately. You may need to log out and log back in to see the updated permissions.\n\nIf you have any questions, please contact your administrator.\n\nBest regards,\nPROPHECY Team"
+  },
+  deactivation: {
+    subject: "Account Deactivation Notice",
+    message: "Dear {{name}},\n\nYour PROPHECY account has been deactivated as per company policy.\n\nIf you believe this is an error or need to recover your account, please contact your administrator immediately.\n\nBest regards,\nPROPHECY Team"
+  },
+  'password-reset': {
+    subject: "Password Reset Instructions",
+    message: "Dear {{name}},\n\nYou have requested a password reset for your PROPHECY account.\n\nClick the following link to reset your password:\n{{reset_link}}\n\nThis link will expire in 24 hours. If you didn't request this reset, please ignore this email.\n\nBest regards,\nPROPHECY Team"
+  },
+  maintenance: {
+    subject: "Scheduled System Maintenance",
+    message: "Dear Users,\n\nWe will be performing scheduled maintenance on PROPHECY system.\n\nMaintenance Window: {{maintenance_time}}\nExpected Duration: {{duration}}\n\nDuring this time, the system will be unavailable. We apologize for any inconvenience.\n\nBest regards,\nPROPHECY Team"
+  }
+};
+
+// Show/hide sections
+function showSection(section) {
+  // Hide all sections
+  document.querySelectorAll('.content-section').forEach(el => {
+    if (el.id !== 'users' || section !== 'users') {
+      el.style.display = 'none';
+    }
+  });
+
+  // Show selected section
+  document.getElementById(section).style.display = 'block';
+
+  // Update navigation
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  event.target.classList.add('active');
+
+  currentSection = section;
+}
+
+// User search functionality
+document.getElementById('userSearch').addEventListener('input', function (e) {
+  const searchTerm = e.target.value.toLowerCase();
+  const rows = document.querySelectorAll('#usersTableBody tr');
+
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    if (text.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
+// Filter users by role
+function filterUsers() {
+  const selectedRole = document.getElementById('roleFilter').value.toLowerCase();
+  const rows = document.querySelectorAll('#usersTableBody tr');
+
+  rows.forEach(row => {
+    if (!selectedRole || row.getAttribute('data-role') === selectedRole) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+// Add User Modal functions
+function openAddUserModal() {
+  document.getElementById('addUserModal').style.display = 'block';
+}
+
+function closeAddUserModal() {
+  document.getElementById('addUserModal').style.display = 'none';
+  document.getElementById('addUserForm').reset();
+}
+
+// Handle add user form submission
+document.getElementById('addUserForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('newUserName').value;
+  const email = document.getElementById('newUserEmail').value;
+  const phone = document.getElementById('newUserPhone').value;
+  const role = document.getElementById('newUserRole').value;
+  const department = document.getElementById('newUserDepartment').value;
+
+  // Here you would typically send this data to your backend
+  alert(`New user added successfully!\n\nName: ${name}\nEmail: ${email}\nRole: ${role.charAt(0).toUpperCase() + role.slice(1)}`);
+
+  closeAddUserModal();
+  // You could add the new user to the table here
+});
+
+// Edit user function
+function editUser(userId) {
+  alert(`Edit user functionality would be implemented here for user ID: ${userId}`);
+  // Here you would open an edit modal with pre-filled user data
+}
+
+// Change Role Modal functions
+function changeRole(userId, userName, currentRole) {
+  changeRoleUserId = userId;
+  document.getElementById('changeRoleUserName').textContent = userName;
+  document.getElementById('currentRole').value = currentRole;
+  document.getElementById('changeRoleModal').style.display = 'block';
+}
+
+function closeChangeRoleModal() {
+  document.getElementById('changeRoleModal').style.display = 'none';
+  document.getElementById('newRole').value = '';
+  document.getElementById('roleChangeReason').value = '';
+  changeRoleUserId = null;
+}
+
+function confirmRoleChange() {
+  const newRole = document.getElementById('newRole').value;
+  const reason = document.getElementById('roleChangeReason').value;
+
+  if (!newRole) {
+    alert('Please select a new role.');
+    return;
+  }
+
+  // Here you would send the role change request to your backend
+  alert(`Role change confirmed!\n\nUser ID: ${changeRoleUserId}\nNew Role: ${newRole.charAt(0).toUpperCase() + newRole.slice(1)}\nReason: ${reason}`);
+
+  closeChangeRoleModal();
+}
+
+// Delete user function
+function deleteUser(userId, userName) {
+  if (confirm(`Are you sure you want to delete user: ${userName}?\n\nThis action cannot be undone.`)) {
+    alert(`User ${userName} has been deleted successfully.`);
+    // Here you would send delete request to backend and remove from table
+  }
+}
+
+// Email template functions
+function useTemplate(templateKey) {
+  const template = emailTemplates[templateKey];
+  if (template) {
+    document.getElementById('emailSubject').value = template.subject;
+    document.getElementById('emailMessage').value = template.message;
+
+    // Show success message
+    const btn = event.target;
+    const originalText = btn.textContent;
+    btn.textContent = 'Template Loaded!';
+    btn.style.background = '#00b894';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+    }, 2000);
+  }
+}
+
+// Email management functions
+function sendEmail() {
+  const recipients = document.getElementById('emailRecipients').value;
+  const subject = document.getElementById('emailSubject').value;
+  const message = document.getElementById('emailMessage').value;
+  const priority = document.getElementById('emailPriority').value;
+
+  if (!subject || !message) {
+    alert('Please fill in both subject and message fields.');
+    return;
+  }
+
+  // Here you would send the email via your backend API
+  alert(`Email sent successfully!\n\nRecipients: ${recipients}\nSubject: ${subject}\nPriority: ${priority.charAt(0).toUpperCase() + priority.slice(1)}`);
+
+  clearEmailForm();
+}
+
+function previewEmail() {
+  const subject = document.getElementById('emailSubject').value;
+  const message = document.getElementById('emailMessage').value;
+
+  if (!subject || !message) {
+    alert('Please fill in both subject and message fields to preview.');
+    return;
+  }
+
+  alert(`Email Preview:\n\nSubject: ${subject}\n\nMessage:\n${message}`);
+}
+
+function saveAsDraft() {
+  alert('Email saved as draft successfully!');
+}
+
+function clearEmailForm() {
+  document.getElementById('emailForm').reset();
+}
+
+// Reports functions
+function generateReport(reportType) {
+  const reportNames = {
+    'user-activity': 'User Activity Report',
+    'role-distribution': 'Role Distribution Report',
+    'email-analytics': 'Email Analytics Report',
+    'system-usage': 'System Usage Report',
+    'security-audit': 'Security Audit Report',
+    'custom-report': 'Custom Report Builder'
+  };
+
+  alert(`Generating ${reportNames[reportType]}...\n\nThis would typically download or display the requested report.`);
+}
+
+// Settings functions
+function saveSettings() {
+  // Collect all toggle states
+  const toggles = document.querySelectorAll('.toggle input[type="checkbox"]');
+  const settings = {};
+
+  toggles.forEach((toggle, index) => {
+    settings[`setting_${index}`] = toggle.checked;
+  });
+
+  alert('Settings saved successfully!\n\nAll configuration changes have been applied.');
+}
+
+function resetSettings() {
+  if (confirm('Are you sure you want to reset all settings to their default values?')) {
+    // Reset all toggles to their default states
+    const toggles = document.querySelectorAll('.toggle input[type="checkbox"]');
+    toggles.forEach((toggle, index) => {
+      // Set default states (most are checked by default)
+      if (index === 2 || index === 7) { // 2FA and Maintenance mode are off by default
+        toggle.checked = false;
+      } else {
+        toggle.checked = true;
+      }
+    });
+
+    alert('Settings have been reset to default values.');
+  }
+}
+
+// Close modals when clicking outside
+window.onclick = function (event) {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+}
+
+// Initialize dashboard
+document.addEventListener('DOMContentLoaded', function () {
+  // Show users section by default
+  showSection('users');
+
+  // Add some dynamic behavior to stats
+  updateStats();
+});
+
+function updateStats() {
+  // This would typically fetch real data from your API
+  const stats = {
+    totalUsers: 1247,
+    activeRecruiters: 86,
+    totalManagers: 42,
+    totalAccountants: 23
+  };
+
+  // Animate counters (simple version)
+  Object.keys(stats).forEach(key => {
+    const element = document.getElementById(key);
+    if (element) {
+      let current = 0;
+      const target = stats[key];
+      const increment = target / 50;
+
+      const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(counter);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, 30);
+    }
+  });
+}</script></body><html>

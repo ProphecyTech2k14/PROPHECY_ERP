@@ -1,0 +1,1455 @@
+/* Add this at the very top of your Dashboard.css file to prevent blinking */
+
+/* Prevent layout thrashing and blinking */
+html, body, #root {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.ResumeSubmission-dashboard-container {
+    width: 100%;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    will-change: auto;
+}
+
+.ResumeSubmission-dashboard-container * {
+    transition: none !important;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 1rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #229C8B;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Prevent candidates table from collapsing */
+.candidates-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    min-height: 400px;
+    will-change: auto;
+}
+
+.candidates-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.candidates-table thead {
+    background-color: #f5f5f5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.candidates-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+}
+
+.candidates-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.candidates-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.candidates-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Ensure pagination doesn't cause re-layout */
+.pagination-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    min-height: 40px;
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.pagination-controls button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #229C8B;
+    color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #187e71;
+    transform: translateY(-2px);
+}
+
+.pagination-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Stats section - prevent jumping */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    min-height: 140px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #229C8B;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 120px;
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+/* Controls section - prevent shifting */
+.controls-section {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    min-height: 50px;
+}
+
+.search-box {
+    position: relative;
+    flex: 0 1 400px;
+    min-width: 250px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #495057;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #229C8B;
+    box-shadow: 0 0 0 2px rgba(34, 156, 139, 0.2);
+}
+
+/* Filter controls - prevent layout shift */
+.filter-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 50px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 120px;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #495057;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #229C8B;
+}
+
+/* Buttons - consistent sizing */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    border: none;
+    white-space: nowrap;
+    min-height: 40px;
+}
+
+.btn-primary {
+    background-color: #229C8B;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #187e71;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(34, 156, 139, 0.2);
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #e9ecef;
+}
+
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-link {
+    background: none;
+    color: #229C8B;
+    padding: 0.5rem;
+    margin-left: 1rem;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Table cell content - prevent overflow */
+.candidate-name {
+    font-weight: 600;
+    color: #333;
+    word-wrap: break-word;
+}
+
+.candidate-role {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 3px;
+}
+
+.contact-email {
+    color: #3b82f6;
+    word-break: break-all;
+}
+
+.contact-phone, .contact-phone-alt {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.contact-linkedin a {
+    color: #0077b5;
+    text-decoration: none;
+}
+
+.contact-linkedin a:hover {
+    text-decoration: underline;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.action-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.view-btn {
+    color: #3b82f6;
+}
+
+.edit-btn {
+    color: #f59e0b;
+}
+
+.delete-btn {
+    color: #ef4444;
+}
+
+.action-btn:hover:not(:disabled) {
+    background-color: #f0f0f0;
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* No results message */
+.no-results {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .search-box {
+        flex: 0 1 300px;
+    }
+    
+    .filter-group {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 992px) {
+    .controls-section {
+        flex-wrap: wrap;
+    }
+    
+    .search-box {
+        flex: 0 1 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .candidates-table {
+        font-size: 0.85rem;
+    }
+    
+    .candidates-table th,
+    .candidates-table td {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ResumeSubmission-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+    }
+    
+    .controls-section {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .search-box {
+        flex: 1 1 100%;
+    }
+    
+    .candidates-table {
+        font-size: 0.75rem;
+    }
+    
+    .candidates-table th,
+    .candidates-table td {
+        padding: 6px 8px;
+    }
+    
+    .pagination-controls {
+        justify-content: center;
+    }
+}
+
+
+:root {
+    --primary-color: #229C8B;
+    --primary-dark: #187e71;
+    --secondary-color: #3f37c9;
+    --success-color: #229C8B;
+    --danger-color: #f72585;
+    --warning-color: #f8961e;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #212529;
+    --text-color: #495057;
+    --border-color: #dee2e6;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f5f9;
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.ResumeSubmission-dashboard-container {
+    width: 100%;
+    padding: 2rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.ResumeSubmission-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ResumeSubmission-dashboard-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(67, 97, 238, 0.2);
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--medium-gray);
+}
+
+.btn-link {
+    background: none;
+    color: var(--primary-color);
+    padding: 0.5rem;
+    
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.controls-section {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap; /* Prevent wrapping to ensure single row */
+}
+
+.search-box {
+    position: relative;
+    width: 400px; /* Fixed width for search */
+    margin-right: auto; /* Pushes filters to the right */
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.filter-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 120px;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: -10rem;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.stat-card.highlight {
+    border-left-color: var(--success-color);
+    background-color: #f0f9ff;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-trend {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.stat-trend.up {
+    color: #10b981;
+}
+
+.stat-trend.down {
+    color: #ef4444;
+}
+
+.candidates-table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.candidates-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.candidates-table th {
+  background-color: #f5f5f5;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  z-index: -1;
+}
+
+.candidates-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.candidates-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.candidate-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.candidate-role {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 3px;
+}
+
+.contact-email {
+  color: #3b82f6;
+}
+
+.contact-phone, .contact-phone-alt {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.current-detail, .experience-years, .notice-period, 
+.submitted-date, .submitted-by {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #555;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-btn {
+  color: #3b82f6;
+}
+
+.edit-btn {
+  color: #f59e0b;
+}
+
+.delete-btn {
+  color: #ef4444;
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.no-results {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  font-style: italic;
+}
+
+.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.sortable span {
+    margin-right: 0.5rem;
+}
+
+.sortable i {
+    opacity: 0.3;
+    transition: var(--transition);
+}
+
+.sortable:hover i {
+    opacity: 0.7;
+}
+
+.sortable.active i {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-left: -10px;
+}
+
+.status-new {
+    background-color: #e3f2fd;
+    color: var(--primary-color);
+}
+
+.status-reviewed {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.status-interview {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status-offer {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-hired {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.submitted-by {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.skill-tag {
+    display: inline-block;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    background-color: var(--light-gray);
+}
+
+.action-btn i {
+    font-size: 0.9rem;
+}
+
+.view-btn {
+    color: var(--primary-color);
+}
+
+.edit-btn {
+    color: var(--warning-color);
+}
+
+.delete-btn {
+    color: var(--danger-color);
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+.pagination-controls button{
+    padding: 8px;
+     border-radius: 20px;
+     background-color: var(--primary-color);
+     color: var(--light-gray);
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+}
+
+.btn-pagination {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 10px;
+   
+}
+
+.btn-pagination:hover {
+    background-color: var(--medium-gray);
+}
+
+.btn-pagination:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.page-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.page-number:hover, .page-number.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.page-size select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .search-box {
+        width: 200px;
+    }
+    .filter-group {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 992px) {
+    .controls-section {
+        flex-wrap: wrap;
+    }
+    .search-box {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  color: #f59e0b;
+}
+
+.edit-btn:hover {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+
+/* Resume Preview Styles */
+.resume-preview-container {
+  margin-top: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 15px;
+}
+
+.resume-preview-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resume-content-scrollable {
+  margin-top: 10px;
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  height: 400px;
+  overflow-y: auto;
+  background-color: white;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-new {
+  background-color: #e3f2fd;
+  color: var(--primary-color);
+}
+
+.status-reviewed {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-interview {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-offer {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-hired {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Modal Layout */
+.modal-content {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+  }
+  
+  .resume-preview-container {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+  }
+}
+
+
+
+
+/* Resume parsing progress */
+.parse-progress {
+  margin: 1rem 0;
+  height: 20px;
+  background-color: var(--light-gray);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.parse-progress .progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.parse-progress .progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Upload buttons */
+.upload-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.upload-buttons label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* Export options */
+.export-options {
+  display: flex;
+  gap: 8px;
+}
+
+.export-options button {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+
+/* Error message */
+.error-message {
+  color: var(--danger-color);
+  padding: 0.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: var(--border-radius);
+  margin: 0.5rem 0;
+}
+
+
+/* Dropdown styles */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  z-index: 100;
+  min-width: 180px;
+  margin-top: 5px;
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.dropdown-menu button:hover {
+  background-color: var(--light-gray);
+}
+
+/* Adjust modal actions to accommodate dropdown */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+}
+
+
+
+.column-filter {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: var(--light-gray);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.column-filter label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.column-filter input[type="checkbox"] {
+  margin: 0;
+}
+
+.skills-list {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+
+
+/* Add or update this in your Dashboard.css file */
+
+/* Contact Info Cell Styling - Stack emails vertically */
+.contact-email {
+  color: #3b82f6;
+  word-break: break-all;
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.contact-phone {
+  font-size: 0.9rem;
+  color: #666;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contact-phone-alt {
+  font-size: 0.9rem;
+  color: #666;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contact-linkedin {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 4px;
+}
+
+.contact-linkedin a {
+  color: #0077b5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-linkedin a:hover {
+  text-decoration: underline;
+}
+
+/* Candidates table cell styling */
+.candidates-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Ensure Contact Info column has proper width */
+.candidates-table td:nth-child(2) {
+  min-width: 200px;
+  max-width: 250px;
+}
+
+/* Email line should break naturally */
+.candidates-table tr td {
+  word-break: normal;
+}
+
+/* Line break styling for contact info */
+.contact-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-email {
+  color: #3b82f6;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.contact-phone {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.contact-phone-alt {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.contact-linkedin a {
+  color: #0077b5;
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.contact-linkedin a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive table adjustments */
+@media (max-width: 1200px) {
+  .candidates-table td:nth-child(2) {
+    min-width: 180px;
+    max-width: 220px;
+  }
+
+  .contact-email {
+    font-size: 0.9rem;
+  }
+
+  .contact-phone {
+    font-size: 0.85rem;
+  }
+
+  .contact-phone-alt {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .candidates-table td:nth-child(2) {
+    min-width: 150px;
+    max-width: 180px;
+  }
+
+  .candidates-table td {
+    padding: 8px 10px;
+  }
+
+  .contact-email {
+    font-size: 0.85rem;
+  }
+
+  .contact-phone,
+  .contact-phone-alt {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .candidates-table td:nth-child(2) {
+    min-width: 130px;
+    max-width: 150px;
+  }
+
+  .candidates-table td {
+    padding: 6px 8px;
+  }
+
+  .contact-email {
+    font-size: 0.8rem;
+  }
+
+  .contact-phone,
+  .contact-phone-alt {
+    font-size: 0.75rem;
+  }
+}

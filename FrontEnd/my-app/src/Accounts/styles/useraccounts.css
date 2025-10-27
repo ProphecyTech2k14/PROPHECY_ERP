@@ -1,0 +1,580 @@
+
+.accounts-container {
+  padding: 2rem;
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.accounts-header {
+  margin-bottom: 2rem;
+}
+
+.accounts-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+/* Tabs */
+.accounts-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e1e8ed;
+  flex-wrap: wrap;
+}
+
+.accounts-tab-button {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  /* color: #5a6c7d; */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  bottom: -2px;
+}
+
+.accounts-tab-button:hover {
+  color: #0a8080;
+  background: rgba(10, 128, 128, 0.05);
+}
+
+.accounts-tab-button.active {
+  color: #0a8080;
+  border-bottom-color: #0a8080;
+  font-weight: 600;
+}
+
+.accounts-content {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: accounts-fadeIn 0.3s ease-in;
+}
+
+@keyframes accounts-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.accounts-tab-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e1e8ed;
+}
+
+/* Employee Details Styles */
+.employee-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.employee-detail-item {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #0a8080;
+}
+
+.employee-detail-item label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #5a6c7d;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.employee-detail-item p {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Statements Table Styles */
+.statements-table-container {
+  overflow-x: auto;
+}
+
+.statements-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.statements-table thead {
+  background: #0a8080;
+  color: white;
+}
+
+.statements-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statements-table tr {
+  border-bottom: 1px solid #e1e8ed;
+  transition: background 0.2s ease;
+}
+
+
+
+.statements-table td {
+  padding: 1rem;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+/* Reports Table Styles */
+.reports-table-container {
+  overflow-x: auto;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.reports-table thead {
+  background: #0a8080;
+  color: white;
+}
+
+.reports-table th {
+  padding: 0.6rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.5px;
+}
+
+.reports-table tr {
+  border-bottom: 1px solid #e1e8ed;
+  transition: background 0.2s ease;
+  border-left: 1px solid #e1e8ed;
+  border-right: 1px solid #e1e8ed;
+}
+
+
+
+.reports-table td {
+  padding: 1rem;
+  color: #2c3e50;
+  /* font-size: 0.9rem; */
+}
+
+/* Benefits Table Styles */
+.benefits-table-container {
+  overflow-x: auto;
+}
+
+.benefits-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.benefits-table thead {
+  background: #0a8080;
+  color: white;
+}
+
+.benefits-table th {
+  padding: 0.6rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.5px;
+}
+
+.benefits-table tr {
+  border-bottom: 1px solid #e1e8ed;
+  transition: background 0.2s ease;
+}
+
+
+
+.benefits-table td {
+  padding: 1rem;
+  color: #2c3e50;
+  /* font-size: 0.9rem; */
+}
+
+/* Immigration Table Styles */
+.immigration-table-container {
+  overflow-x: auto;
+}
+
+.immigration-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.immigration-table thead {
+  background: #0a8080;
+  color: white;
+}
+
+.immigration-table th {
+  padding: 0.6rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.5px;
+}
+
+.immigration-table tr {
+  border-bottom: 1px solid #e1e8ed;
+  transition: background 0.2s ease;
+}
+
+
+
+.immigration-table td {
+  padding: 1rem;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+/* Status Badges */
+.accounts-status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.accounts-status-badge-active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.accounts-status-badge-completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.accounts-status-badge-in-progress {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.accounts-status-badge-renewal-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.accounts-status-badge-inactive {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Button Styles */
+.accounts-download-btn {
+  padding: 0.5rem 1rem;
+  background: #0a8080;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+}
+
+.accounts-download-btn:hover {
+  background: #087070;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(10, 128, 128, 0.3);
+}
+
+.accounts-view-btn {
+  padding: 0.5rem 1rem;
+  background: #0a8080;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+}
+
+.accounts-view-btn:hover {
+  /* background: #0056b3; */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.accounts-details-btn {
+  padding: 0.5rem 1rem;
+  background: #0a8080;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+}
+
+.accounts-details-btn:hover {
+  /* background: #545b62; */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .accounts-container {
+    padding: 1rem;
+  }
+
+  .accounts-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .accounts-tab-button {
+    white-space: nowrap;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .accounts-content {
+    padding: 1rem;
+  }
+
+  .employee-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .statements-table,
+  .reports-table,
+  .benefits-table,
+  .immigration-table {
+    font-size: 0.875rem;
+  }
+
+  .statements-table th,
+  .statements-table td,
+  .reports-table th,
+  .reports-table td,
+  .benefits-table th,
+  .benefits-table td,
+  .immigration-table th,
+  .immigration-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .accounts-download-btn,
+  .accounts-view-btn,
+  .accounts-details-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .accounts-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .accounts-tab-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .statements-table-container,
+  .reports-table-container,
+  .benefits-table-container,
+  .immigration-table-container {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+
+/* Excel-style Table for Statements */
+.excel-table-container {
+  overflow-x: auto;
+  /* border: 1px solid #c0c0c0; */
+  background: white;
+}
+
+.excel-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* margin-top: 1rem; */
+  font-family: 'Calibri', 'Arial', sans-serif;
+  font-size: 11pt;
+}
+
+.excel-table thead {
+  background: #f2f2f2;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.excel-table th {
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12pt;
+  border: 1px solid #d0d0d0;
+  background: #0a8080;
+  color: white;
+}
+
+.excel-table .excel-row-header {
+  /* background: #f2f2f2; */
+  text-align: center;
+  font-weight: 600;
+  color: #000;
+  width: 40px;
+  min-width: 40px;
+  border: 1px solid #d0d0d0;
+}
+
+.excel-table tr {
+  border: 1px solid #d0d0d0;
+}
+
+.excel-table tbody tr:hover {
+  background: #e8f4f8;
+}
+
+.excel-table td {
+  padding: 6px 12px;
+  color: #000;
+  font-size: 11pt;
+  border: 1px solid #d0d0d0;
+  background: white;
+  text-align: left;
+}
+
+
+
+
+.excel-table .excel-bold-text {
+  font-weight: 600;
+}
+
+/* Remove the old statements table styles but keep them for reference */
+.statements-table-container {
+  overflow-x: auto;
+}
+
+.statements-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.statements-table thead {
+  background: #0a8080;
+  color: white;
+}
+
+.statements-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statements-table tr {
+  border-bottom: 1px solid #e1e8ed;
+  transition: background 0.2s ease;
+}
+
+
+
+.statements-table td {
+  padding: 1rem;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+
+.statements-button-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.statements-action-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.statements-financial-btn {
+  background: #0a8080;
+  color: white;
+}
+
+.statements-financial-btn:hover {
+  background: #0c8080;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(10, 128, 128, 0.3);
+}
+
+.statements-payroll-btn {
+  background: #0c8080;
+  color: white;
+}
+
+.statements-payroll-btn:hover {
+  background: #0c8080;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.statements-action-btn.active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
